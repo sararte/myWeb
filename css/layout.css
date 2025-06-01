@@ -1,0 +1,65 @@
+/* Fondo principal */
+#background, #background2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease-in-out;
+}
+
+#background {
+  z-index: 1;
+  opacity: 1;
+}
+
+#background2 {
+  z-index: 2;
+  opacity: 0;
+}
+
+/* Menú lateral */
+#side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 10;
+  padding: 30px 20px;
+}
+
+.menu-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 40px;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+#side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#side-menu li {
+  margin-bottom: 20px;
+}
+
+#side-menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-family: sans-serif;
+  transition: opacity 0.3s ease;
+}
+
+#side-menu a:hover {
+  opacity: 0.6;
+}

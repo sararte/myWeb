@@ -1,58 +1,60 @@
-// lightbox.js
-export function showLightbox(imagenes, indexInicial, descripcionCallback) {
+// js/lightbox.js
+export function showLightbox(imagenes, indiceInicial, getDescripcion) {
+  let indice = indiceInicial;
+
   const overlay = document.createElement('div');
   overlay.className = 'lightbox-overlay';
 
-  const container = document.createElement('div');
-  container.className = 'lightbox-container';
+  const contenedor = document.createElement('div');
+  contenedor.className = 'lightbox-contenedor';
 
   const img = document.createElement('img');
-  img.src = imagenes[indexInicial];
-  container.appendChild(img);
+  img.src = imagenes[indice].image;
+  contenedor.appendChild(img);
 
   const descripcion = document.createElement('div');
   descripcion.className = 'lightbox-descripcion';
-  container.appendChild(descripcion);
+  descripcion.textContent = getDescripcion(indice);
+  contenedor.appendChild(descripcion);
 
-  const btnPrev = document.createElement('div');
-  btnPrev.className = 'lightbox-prev';
-  btnPrev.innerHTML = '&#9664;';
-  container.appendChild(btnPrev);
+  const flechaIzq = document.createElement('div');
+  flechaIzq.className = 'lightbox-flecha izq';
+  flechaIzq.innerHTML = '&#10094;';
+  contenedor.appendChild(flechaIzq);
 
-  const btnNext = document.createElement('div');
-  btnNext.className = 'lightbox-next';
-  btnNext.innerHTML = '&#9654;';
-  container.appendChild(btnNext);
+  const flechaDer = document.createElement('div');
+  flechaDer.className = 'lightbox-flecha der';
+  flechaDer.innerHTML = '&#10095;';
+  contenedor.appendChild(flechaDer);
 
-  overlay.appendChild(container);
-  document.body.appendChild(overlay);
-
-  let index = indexInicial;
-  function actualizarImagen() {
-    img.src = imagenes[index];
-    descripcion.innerText = descripcionCallback(index);
-    btnPrev.style.opacity = index === 0 ? '0.3' : '1';
-    btnNext.style.opacity = index === imagenes.length - 1 ? '0.3' : '1';
+  function actualizar() {
+    img.src = imagenes[indice].image;
+    descripcion.textContent = getDescripcion(indice);
+    flechaIzq.style.opacity = indice === 0 ? '0.3' : '1';
+    flechaDer.style.opacity = indice === imagenes.length - 1 ? '0.3' : '1';
   }
 
-  btnPrev.onclick = () => {
-    if (index > 0) {
-      index--;
-      actualizarImagen();
-    }
-  };
-  btnNext.onclick = () => {
-    if (index < imagenes.length - 1) {
-      index++;
-      actualizarImagen();
+  flechaIzq.onclick = e => {
+    e.stopPropagation();
+    if (indice > 0) {
+      indice--;
+      actualizar();
     }
   };
 
-  overlay.onclick = (e) => {
-    if (e.target === overlay) {
-      overlay.remove();
+  flechaDer.onclick = e => {
+    e.stopPropagation();
+    if (indice < imagenes.length - 1) {
+      indice++;
+      actualizar();
     }
   };
 
-  actualizarImagen();
+  overlay.onclick = () => {
+    overlay.remove();
+  };
+
+  overlay.appendChild(contenedor);
+  document.body.appendChild(overlay);
+  actualizar();
 }

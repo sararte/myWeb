@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/sections.css" />
   <link rel="stylesheet" href="css/obras.css" />
   <link rel="stylesheet" href="css/lightbox.css">
+
 </head>
 <body>
   <nav id="side-menu">
@@ -21,12 +22,15 @@
   </nav>
 
   <main class="section active">
-    <h1>Obras</h1>
     <div id="obras-galeria"></div>
   </main>
 
-  <script type="module" src="js/obras.js"></script>
-  <script type="module" src="js/lightbox.js"></script>
+  <script type="module">
+    import { obras } from './js/obras.js';
+    obras();
+  </script>
+
+
 
 </body>
 </html>

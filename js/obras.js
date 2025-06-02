@@ -1,49 +1,65 @@
-// obras.js - Estructura horizontal por categoría (solo covers)
-fetch('data/artworks.json')
-  .then(response => response.json())
-  .then(data => {
-    const galeria = document.getElementById('obras-galeria');
-    const categorias = [
-      { nombre: 'Dibujos', clave: 'drawings' },
-      { nombre: 'Pinturas', clave: 'paintings' },
-      { nombre: 'Instalaciones', clave: 'installations' }
-    ];
+import { iniciarVisorDibujos } from './visorDibujos.js';
 
-    categorias.forEach(categoria => {
-      const obrasPorAño = data[categoria.clave];
-      const categoriaBloque = document.createElement('div');
-      categoriaBloque.className = 'categoria-bloque';
+export async function obras() {
+  const response = await fetch('./data/artworks.json');
 
-      const titulo = document.createElement('h2');
-      titulo.className = 'categoria-titulo';
-      titulo.innerText = categoria.nombre;
-      categoriaBloque.appendChild(titulo);
+  const data = await response.json();
 
-      const fila = document.createElement('div');
-      fila.className = 'portadas-año';
+  console.log("✅ obras.js cargado");
 
-      const años = Object.keys(obrasPorAño).sort((a, b) => b - a);
-      años.forEach(año => {
-        const obras = obrasPorAño[año];
-        const obra = obras[Math.floor(Math.random() * obras.length)];
+const main = document.querySelector('#obras-galeria');
 
-        const item = document.createElement('div');
-        item.className = 'obra-item';
 
-        const img = document.createElement('img');
-        img.src = obra.image;
-        img.alt = obra.title || 'Obra';
 
-        const añoTexto = document.createElement('div');
-        añoTexto.className = 'año-titulo';
-        añoTexto.innerText = año;
+  const categorias = ['drawings', 'paintings', 'installations'];
+  const titulos = {
+    drawings: 'Dibujos',
+    paintings: 'Pinturas',
+    installations: 'Instalaciones'
+  };
 
-        item.appendChild(img);
-        item.appendChild(añoTexto);
-        fila.appendChild(item);
-      });
+  categorias.forEach(categoria => {
+    const seccion = document.createElement('section');
+    seccion.classList.add('categoria');
 
-      categoriaBloque.appendChild(fila);
-      galeria.appendChild(categoriaBloque);
+    const titulo = document.createElement('h2');
+    titulo.textContent = titulos[categoria];
+    seccion.appendChild(titulo);
+
+    const fila = document.createElement('div');
+    fila.classList.add('cover-row');
+
+    const anios = Object.keys(data[categoria]).sort((a, b) => b - a);
+    anios.forEach(anio => {
+      const obrasDelAnio = data[categoria][anio];
+      if (!obrasDelAnio || obrasDelAnio.length === 0) return;
+
+      const primera = obrasDelAnio[0];
+
+      const cover = document.createElement('div');
+      cover.classList.add('cover-item');
+
+      const imagen = document.createElement('img');
+      imagen.src = primera.image;
+      imagen.alt = `${categoria} ${anio}`;
+
+      const textoAnio = document.createElement('span');
+      textoAnio.textContent = anio;
+
+      if (categoria === 'drawings') {
+        imagen.addEventListener('click', () => {
+          iniciarVisorDibujos(anio, data);
+        });
+      }
+
+      cover.appendChild(imagen);
+      cover.appendChild(textoAnio);
+      fila.appendChild(cover);
     });
+
+    seccion.appendChild(fila);
+    main.appendChild(seccion);
   });
+}
+
+

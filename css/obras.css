@@ -1,41 +1,46 @@
-/* css/obras.css */
-.categoria-bloque {
-  margin-bottom: 40px;
+.categoria {
+  margin-bottom: 60px;
 }
 
-.categoria-titulo {
+.categoria h2 {
   font-size: 1.8em;
-  margin-bottom: 10px;
-  color: #000;
-}
-
-.año-bloque {
   margin-bottom: 20px;
+  color: #111;
 }
 
-.portadas-año {
+.cover-row {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 40px;
+  padding-bottom: 20px;
 }
 
-.obra-item {
+.cover-item {
+  flex: 0 0 auto;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cover-item img {
   width: 180px;
-  text-align: center;
-}
-
-.obra-item img {
-  width: 100%;
   height: 240px;
   object-fit: cover;
-  border: 1px solid #ccc;
+  border: 2px solid transparent;
+  transition: border 0.3s;
+  cursor: pointer;
 }
 
 
-.año-titulo {
+.cover-item img:hover {
+  border-color: #999;
+}
+
+.cover-item span {
+  margin-top: 10px;
   font-size: 1em;
-  margin-top: 8px;
+  color: #555;
   text-align: center;
-  color: #333;
 }

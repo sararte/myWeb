@@ -1,4 +1,7 @@
 import { iniciarVisorDibujos } from './visorDibujos.js';
+import { iniciarVisorPinturas } from './visorPinturas.js';
+import { iniciarVisorInstalaciones } from './visorInstalaciones.js';
+
 
 export async function obras() {
   const response = await fetch('./data/artworks.json');
@@ -49,6 +52,18 @@ const main = document.querySelector('#obras-galeria');
       if (categoria === 'drawings') {
         imagen.addEventListener('click', () => {
           iniciarVisorDibujos(anio, data);
+        });
+      }
+
+      if (categoria === 'paintings') {
+        imagen.addEventListener('click', () => {
+            iniciarVisorPinturas(anio, data);
+        });
+      }
+
+      if (categoria === 'installations') {
+        imagen.addEventListener('click', () => {
+            iniciarVisorInstalaciones(anio, data);
         });
       }
 

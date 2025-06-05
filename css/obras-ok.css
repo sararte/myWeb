@@ -1,12 +1,14 @@
 .categoria {
   margin-bottom: 60px;
 }
+
 .categoria h2 {
   font-size: 1.8em;
   margin-bottom: 20px;
   color: #111;
   margin-left: 25px; 
 }
+
 .cover-row {
   display: flex;
   flex-wrap: nowrap;
@@ -14,6 +16,15 @@
   gap: 20px;
   padding-bottom: 20px;
 }
+
+.cover-item {
+  flex: 0 0 auto;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .cover-item img {
   width: 180px;
   height: 240px;
@@ -21,6 +32,7 @@
   display: block;
   margin: 0 auto;
 }
+
 .cover-item span {
   display: block;
   margin-top: 10px;
@@ -28,37 +40,23 @@
   font-size: 0.9em;
   color: #444;
 }
-.cover-text {
-  text-align: center;
-  margin-top: 8px;
-}
-.cover-item:hover {
-  outline: 5px solid rgba(150, 150, 150, 0.4);
-  outline-offset: -5px;
-  transform: scale(1.02);
-  cursor: pointer;
-}
+
 .cover-title {
   font-weight: bold;
   font-size: 0.95em;
   text-align: center;
   color: #222;
   margin-top: 10px;
-  font-family: 'Courier New', monospace;
 }
+
 .cover-subtitle {
   font-size: 0.85em;
   font-style: italic;
   text-align: center;
   color: #666;
   margin-top: 2px;
-  font-family: 'Courier New', monospace;
 }
-.cover-year {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.85em;
-  font-family: 'Courier New', monospace;
-  color: #444;
-  text-align: center;
-}
+
+
+
+

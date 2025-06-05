@@ -3,7 +3,7 @@
   top: 0;
   left: 180px;
   width: calc(100% - 180px);
-  background-color: #f2f2f2;
+  background-color: #eee;
   color: #111;
   padding: 40px;
   overflow-y: auto;
@@ -17,4 +17,33 @@
 
 .hidden {
   display: none;
+}
+
+body.biografia {
+  background-color: #eee;
+  color: #111;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+body.biografia #side-menu {
+  background-color: #f2f2f2; 
+  /* background-color: #d4d3d3; Un gris oscuro elegante */
+}
+
+.biografia-bloque {
+  max-width: 680px;
+  margin: 100px auto 200px 450px; /* margen izquierdo compensado */
+  padding: 0 30px;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+
+.biografia-bloque h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

@@ -2,17 +2,12 @@ import { iniciarVisorDibujos } from './visorDibujos.js';
 import { iniciarVisorPinturas } from './visorPinturas.js';
 import { iniciarVisorInstalaciones } from './visorInstalaciones.js';
 
-
 export async function obras() {
+  const main = document.getElementById("contenedor-obras");
+
   const response = await fetch('./data/artworks.json');
-
   const data = await response.json();
-
   console.log("✅ obras.js cargado");
-
-const main = document.querySelector('#obras-galeria');
-
-
 
   const categorias = ['drawings', 'paintings', 'installations'];
   const titulos = {
@@ -38,7 +33,6 @@ const main = document.querySelector('#obras-galeria');
       if (!obrasDelAnio || obrasDelAnio.length === 0) return;
 
       const primera = obrasDelAnio[0];
-
       const cover = document.createElement('div');
       cover.classList.add('cover-item');
 
@@ -46,29 +40,48 @@ const main = document.querySelector('#obras-galeria');
       imagen.src = primera.image;
       imagen.alt = `${categoria} ${anio}`;
 
-      const textoAnio = document.createElement('span');
-      textoAnio.textContent = anio;
-
-      if (categoria === 'drawings') {
-        imagen.addEventListener('click', () => {
-          iniciarVisorDibujos(anio, data);
-        });
-      }
-
-      if (categoria === 'paintings') {
-        imagen.addEventListener('click', () => {
-            iniciarVisorPinturas(anio, data);
-        });
-      }
-
       if (categoria === 'installations') {
+        const texto = document.createElement('div');
+        texto.classList.add("cover-text");
+
+        const titulo = document.createElement("p");
+        titulo.classList.add("cover-title");
+        titulo.textContent = primera.title;
+
+        texto.appendChild(titulo);
+        if (primera.subtitle) {
+          const subtitulo = document.createElement("p");
+          subtitulo.classList.add("cover-subtitle");
+          subtitulo.textContent = primera.subtitle;
+          texto.appendChild(subtitulo);
+        }
+
+        const anioTexto = document.createElement("p");
+        anioTexto.classList.add("cover-year");
+        anioTexto.textContent = anio;
+        texto.appendChild(anioTexto);
+
+        cover.appendChild(imagen);
+        cover.appendChild(texto);
         imagen.addEventListener('click', () => {
-            iniciarVisorInstalaciones(anio, data);
+          iniciarVisorInstalaciones(anio, data);
         });
+      } else {
+        const textoAnio = document.createElement('span');
+        textoAnio.textContent = anio;
+
+        imagen.addEventListener('click', () => {
+          if (categoria === 'drawings') {
+            iniciarVisorDibujos(anio, data);
+          } else if (categoria === 'paintings') {
+            iniciarVisorPinturas(anio, data);
+          }
+        });
+
+        cover.appendChild(imagen);
+        cover.appendChild(textoAnio);
       }
 
-      cover.appendChild(imagen);
-      cover.appendChild(textoAnio);
       fila.appendChild(cover);
     });
 
@@ -76,5 +89,4 @@ const main = document.querySelector('#obras-galeria');
     main.appendChild(seccion);
   });
 }
-
 

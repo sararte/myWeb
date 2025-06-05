@@ -23,20 +23,26 @@
 
 /* Menú lateral */
 #side-menu {
-  position: fixed;
+  position:fixed;
   top: 0;
   left: 0;
   width: 180px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  background-color:rgb(6, 6, 6);
   z-index: 10;
   padding: 30px 20px;
+}
+
+#obras-pagina #side-menu {
+  background-color: #f2f2f2 !important;
+  /* background-color: #d2d1d1 !important; */
+  /* border-right: 1px solid #c7c6c6; */
 }
 
 .menu-title {
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: rgb(255, 255, 255);
   margin-bottom: 40px;
   font-family: sans-serif;
   cursor: pointer;
@@ -54,7 +60,7 @@
 
 #side-menu a {
   text-decoration: none;
-  color: white;
+  color: rgb(167, 167, 167);
   font-size: 18px;
   font-family: sans-serif;
   transition: opacity 0.3s ease;
@@ -63,3 +69,13 @@
 #side-menu a:hover {
   opacity: 0.6;
 }
+
+#side-menu a.active {
+  border: 2px solid #999;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background-color: #f4f4f4;
+  color: #111;
+}
+
+

@@ -11,25 +11,28 @@
   <link rel="stylesheet" href="css/lightbox.css">
 
 </head>
-<body>
+<body id="obras-pagina">
+
   <nav id="side-menu">
     <div class="menu-title"><a href="index.html">marcosaravia.net</a></div>
     <ul>
-      <li><a href="obras.html">Obras</a></li>
+      <li><a href="obras.html" class="active">Obras</a></li>
       <li><a href="biografía.html">Biografía</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </nav>
 
   <main class="section active">
-    <div id="obras-galeria"></div>
+    <div id="contenedor-obras"></div>
+
   </main>
 
   <script type="module">
     import { obras } from './js/obras.js';
-    obras();
-  </script>
-
+    window.addEventListener("DOMContentLoaded", () => {
+        obras();
+    });
+</script>
 
 
 </body>

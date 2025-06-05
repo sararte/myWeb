@@ -24,24 +24,24 @@ function crearLightbox(obras) {
 
   const contenedor = document.createElement('div');
   contenedor.id = 'visor-contenedor';
+  contenedor.style.position = 'relative';
   contenedor.style.background = 'white';
   contenedor.style.padding = '0';
   contenedor.style.maxWidth = '90%';
   contenedor.style.maxHeight = '90%';
   contenedor.style.borderRadius = '12px';
   contenedor.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
+  contenedor.style.overflow = 'hidden';
   contenedor.style.display = 'flex';
   contenedor.style.flexDirection = 'column';
-  contenedor.style.overflow = 'hidden';
   contenedor.addEventListener('click', e => e.stopPropagation());
 
-  // Contenedor scrollable para las imágenes
+  // Contenido con scroll (las imágenes y videos)
   const areaContenido = document.createElement('div');
   areaContenido.style.flex = '1';
   areaContenido.style.overflowY = 'auto';
   areaContenido.style.padding = '30px';
 
-  // Insertar imágenes
   obras.forEach(obra => {
     if (obra.image && !obra.video) {
       const img = document.createElement('img');
@@ -53,7 +53,6 @@ function crearLightbox(obras) {
     }
   });
 
-  // Insertar videos al final
   obras.forEach(obra => {
     if (obra.video) {
       const video = document.createElement('video');
@@ -66,24 +65,30 @@ function crearLightbox(obras) {
     }
   });
 
-  // Descripción fija fuera del scroll
+  // Caja flotante de descripción
   const primera = obras[0];
   const descripcion = document.createElement('div');
+  descripcion.style.position = 'fixed';
+  descripcion.style.bottom = '20px';
+  descripcion.style.left = '50%';
+  descripcion.style.transform = 'translateX(-50%)';
+  descripcion.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+  descripcion.style.padding = '10px 20px';
+  descripcion.style.borderRadius = '10px';
+  descripcion.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
   descripcion.style.textAlign = 'center';
-  descripcion.style.padding = '20px';
-  descripcion.style.borderTop = '1px solid #ccc';
-  descripcion.style.backgroundColor = '#f9f9f9';
   descripcion.style.color = '#333';
+  descripcion.style.zIndex = '1100';
+  descripcion.style.maxWidth = '80%';
 
   descripcion.innerHTML = `
-  <strong>${primera.title || 'S/T'}</strong>${primera.subtitle ? ` – <em>${primera.subtitle}</em>` : ''}<br>
-  ${primera.year} – ${primera.materials}, ${primera.dimensions}
-`;
-
+    <strong>${primera.title || 'S/T'}</strong>${primera.subtitle ? ` – <em>${primera.subtitle}</em>` : ''}<br>
+    ${primera.year} – ${primera.materials}, ${primera.dimensions}
+  `;
 
   contenedor.appendChild(areaContenido);
-  contenedor.appendChild(descripcion);
   fondo.appendChild(contenedor);
+  fondo.appendChild(descripcion);
   document.body.appendChild(fondo);
 }
 

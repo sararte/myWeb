@@ -1,0 +1,59 @@
+body.contacto {
+  background-color: #eee;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+body.contacto #side-menu {
+  background-color: #f2f2f2; /* gris oscuro si lo deseas diferente */
+}
+
+body.contacto main.section {
+  margin-left: 200px;
+  max-width: 600px;
+  padding: 80px 40px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+body.contacto h1 {
+  margin-bottom: 20px;
+}
+
+body.contacto a {
+  color: #f2f2f2;
+  text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  font-weight: bold;
+  text-align: left;
+}
+
+input,
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+button {
+  align-self: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #3a3a3a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}

@@ -6,21 +6,33 @@
   <title>Contacto - Marco Saravia Vega</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/contacto.css" />
 </head>
-<body>
+<body class="contacto">
   <nav id="side-menu">
     <div class="menu-title"><a href="index.html">marcosaravia.net</a></div>
     <ul>
       <li><a href="obras.html">Obras</a></li>
       <li><a href="biografía.html">Biografía</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
     </ul>
   </nav>
 
-  <main class="section active">
-    <h1>Contacto</h1>
-    <p>Puedes escribirme a: <a href="mailto:marcosaravia@ejemplo.com">marcosaravia@ejemplo.com</a></p>
-  </main>
+  <main class="section">
+  <h1>Contacto</h1>
+  <form>
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Mensaje:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
+</main>
+
 </body>
 </html>
